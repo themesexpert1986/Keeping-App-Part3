@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import Zoom from '@material-ui/core/Zoom';
+
 function CreateArea(props) {
   const [note, setNote] = useState({
     title: "",
     content: ""
   });
+
+  const [isExpanded,setExpanded] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -16,23 +22,29 @@ function CreateArea(props) {
     });
   }
 
+  function expand() {
+    setExpanded(true);
+  }
+
   return (
     <div>
       <form>
-        <input
+        { isExpanded && <input
           name="title"
           placeholder="Title"
           onChange={handleChange}
           value={note.title}
-        />
+        />}
         <textarea
+          onClick={expand}
           name="content"
           placeholder="Take a note..."
-          rows="3"
+          rows={isExpanded ? 3: 1}
           onChange={handleChange}
           value={note.content}
         />
-        <button
+        <Zoom in={isExpanded ? true : false}>
+        <Fab className="modifier"
           onClick={() => {
             props.onAdd(note);
             //reset Empty
@@ -41,10 +53,10 @@ function CreateArea(props) {
               content: ""
             });
           }}
-          type="button"
-        >
-          Add
-        </button>
+        >        
+          <AddIcon />         
+        </Fab>
+        </Zoom>
       </form>
     </div>
   );
