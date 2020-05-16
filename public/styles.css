@@ -10,7 +10,7 @@ body {
   background: #eee;
   padding: 0 16px;
   background-color: #f5ba13;
-background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
+  background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
